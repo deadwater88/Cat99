@@ -1,0 +1,47 @@
+<p>-- <%= @cat.name %> --</p>
+<table border= 1px>
+  <tr>
+    <td>Sex</td>
+    <td><%= @cat.sex %></td>
+  </tr>
+  <tr>
+    <td>Color</td>
+    <td><%= @cat.color %></td>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td><%= @cat.description %></td>
+  </tr>
+  <tr>
+    <td> Birth Day</td>
+    <td><%= @cat.birth_date %></td>
+  </tr>
+
+  <% @requests.each_with_index do |request,index|  %>
+  <tr>
+    <td>Request #</td>
+    <td><%= index + 1 %></td>
+  </tr>
+  <tr>
+    <td> Start Date</td>
+    <td><%= request.start_date %></td>
+  </tr>
+  <tr>
+    <td> End Date</td>
+    <td><%= request.end_date %></td>
+  </tr>
+  <% if request.status == "PENDING" %>
+  <tr>
+    <td><%= button_to "APPROVE", {action: "update", id: request.id, status: "APPROVED"}%>
+    <td><%= button_to "DENY", {action: "update", id: request.id, status: "DENIED"}%>
+  </tr>
+  <% else %>
+    <tr>
+      <td>Status:</td>
+      <td><%= request.status %></td>
+    </tr>
+  <% end %>
+  <% end %>
+
+
+</table>
